@@ -10,25 +10,15 @@ function HomePage() {
     <>
       <div className="qubiq-bg px-4 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
+          <div className="text-center mb-16">
             <p className="text-xs font-semibold tracking-[0.3em] text-blue-400 uppercase mb-3">
               qubiq.cz
             </p>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white">
-              Jakub Krejci
+              Jakub Krejčí
             </h1>
             <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
               Osobní webová prezentace
-            </p>
-            <p className="mt-4 text-slate-400 text-lg max-w-2xl mx-auto">
-              Tvorba, vývoj, modelařina a audiovizuální projekty na jednom
-              místě.
-            </p>
-            <p className="mt-2 text-slate-500 text-sm max-w-xl mx-auto">
-              Projekty, na kterých pracuji, průběžná dokumentace a kontakt.
-            </p>
-            <p className="mt-4 text-sm font-medium text-blue-300 animate-soft-glow inline-block">
-              Vítej na mém portfoliu
             </p>
           </div>
 
