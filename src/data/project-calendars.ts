@@ -33,3 +33,10 @@ export function getGoogleCalendarEmbedUrl(calendarId: string) {
   const src = encodeURIComponent(calendarId)
   return `${base}?src=${src}&ctz=Europe%2FPrague&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0`
 }
+
+export function getCombinedGoogleCalendarEmbedUrl(calendarIds: string[]) {
+  const base = 'https://calendar.google.com/calendar/embed'
+  const validIds = calendarIds.filter((id) => id.trim().length > 0)
+  const sources = validIds.map((id) => `src=${encodeURIComponent(id)}`).join('&')
+  return `${base}?${sources}&ctz=Europe%2FPrague&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0`
+}
