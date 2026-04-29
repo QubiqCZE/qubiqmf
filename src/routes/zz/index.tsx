@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Train, Ruler, Route as RouteIcon, Activity, Image } from 'lucide-react'
 
 export const Route = createFileRoute('/zz/')({
-  component: ZahradniZelezniceePage,
+  component: ZahradniZeleznicePage,
 })
 
 const TECH_PARAMS = [
@@ -14,7 +14,7 @@ const TECH_PARAMS = [
 
 const GALLERY_PLACEHOLDERS = Array.from({ length: 6 })
 
-function ZahradniZelezniceePage() {
+function ZahradniZeleznicePage() {
   return (
     <div className="qubiq-bg px-4 py-12 md:py-20">
       <div className="max-w-4xl mx-auto">
