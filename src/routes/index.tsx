@@ -26,11 +26,13 @@ function HomePage() {
           </div>
 
           <section className="mb-16">
-            <h2 className="text-xl font-semibold text-white mb-5">Projekty</h2>
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">
+              Projekty
+            </h2>
             <div className="grid grid-cols-1 gap-5">
               <Link
                 to="/zz/"
-                className="glass-card rounded-2xl p-8 flex items-center gap-7 cursor-pointer no-underline group"
+                className="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-7 cursor-pointer no-underline group"
               >
                 <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg">
                   <Train className="w-10 h-10 text-white" strokeWidth={1.5} />
@@ -55,25 +57,43 @@ function HomePage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-white mb-5">Bio</h2>
-            <div className="glass-card rounded-2xl p-6 md:p-8">
-              <p className="text-slate-300 leading-relaxed">
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">
+              Bio
+            </h2>
+            <div className="glass-card rounded-2xl p-6 md:p-8 text-center">
+              <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">
                 Je mi 22 let. Jsem maker, modelář a vývojář, baví mě také
                 audiovizuální tvorba. Moje koníčky jsou mou prací a zúročuji je
                 mimo jiné i ve spolku CZLAN, kde se věnuji primárně správě
                 sociálních sítí a realizaci akcí zaměřených na vzdělávání a
                 kutilství.
               </p>
+              <div className="mt-5 flex flex-wrap justify-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-medium">
+                  maker
+                </span>
+                <span className="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-medium">
+                  modelář
+                </span>
+                <span className="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-medium">
+                  vývojář
+                </span>
+                <span className="px-3 py-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-medium">
+                  audiovizuální tvorba
+                </span>
+              </div>
             </div>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white mb-5">Kontakt</h2>
-            <div className="glass-card rounded-2xl p-6 md:p-8 space-y-4">
-              <p className="text-slate-300">
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">
+              Kontakt
+            </h2>
+            <div className="glass-card rounded-2xl p-6 md:p-8 space-y-4 text-center">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Napiš mi, pokud chceš spolupráci nebo konzultaci.
               </p>
-              <div className="space-y-3 text-slate-200">
+              <div className="space-y-3 text-slate-200 inline-block text-left">
                 <p className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-blue-400" />
                   <a
