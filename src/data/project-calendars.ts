@@ -40,3 +40,8 @@ export function getCombinedGoogleCalendarEmbedUrl(calendarIds: string[]) {
   const sources = validIds.map((id) => `src=${encodeURIComponent(id)}`).join('&')
   return `${base}?${sources}&ctz=Europe%2FPrague&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0`
 }
+
+export function getGoogleCalendarPublicUrl(calendarId: string) {
+  const cid = encodeURIComponent(calendarId)
+  return `https://calendar.google.com/calendar/u/0?cid=${cid}`
+}

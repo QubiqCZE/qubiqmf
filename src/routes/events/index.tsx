@@ -3,7 +3,7 @@ import { CalendarClock, ExternalLink } from 'lucide-react'
 
 import {
   PROJECT_CALENDARS,
-  getGoogleCalendarEmbedUrl,
+  getGoogleCalendarPublicUrl,
 } from '@/data/project-calendars'
 
 export const Route = createFileRoute('/events/')({
@@ -40,12 +40,16 @@ function EventsPage() {
               </div>
 
               {calendar.calendarId ? (
-                <iframe
-                  src={getGoogleCalendarEmbedUrl(calendar.calendarId)}
-                  className="w-full h-[420px] rounded-xl border border-blue-400/20 bg-[#050d1f]"
-                  title={`Kalendář akcí - ${calendar.title}`}
-                  loading="lazy"
-                />
+                <a
+                  href={getGoogleCalendarPublicUrl(calendar.calendarId)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
+                >
+                  <CalendarClock className="w-4 h-4" />
+                  Otevřít veřejný Google kalendář
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               ) : (
                 <div className="rounded-xl border border-dashed border-blue-400/30 p-5 text-slate-300 bg-blue-950/20">
                   <p className="font-medium">Kalendář zatím není propojen.</p>

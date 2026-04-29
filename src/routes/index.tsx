@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { CalendarDays, Instagram, Mail, Shapes, Train, Users } from 'lucide-react'
 import {
   PROJECT_CALENDARS,
-  getCombinedGoogleCalendarEmbedUrl,
+  getGoogleCalendarPublicUrl,
 } from '@/data/project-calendars'
 
 export const Route = createFileRoute('/')({
@@ -37,8 +37,10 @@ const PROJECTS = [
 ]
 
 function HomePage() {
-  const activeCalendarIds = PROJECT_CALENDARS.map((c) => c.calendarId ?? '').filter(Boolean)
-  const combinedCalendarUrl = getCombinedGoogleCalendarEmbedUrl(activeCalendarIds)
+  const primaryCalendar = PROJECT_CALENDARS.find((c) => (c.calendarId ?? '').trim().length > 0)
+  const primaryCalendarUrl = primaryCalendar?.calendarId
+    ? getGoogleCalendarPublicUrl(primaryCalendar.calendarId)
+    : ''
 
   return (
     <>
@@ -93,13 +95,16 @@ function HomePage() {
               <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
                 Celkový přehled akcí, kde je možné některý z projektů potkat.
               </p>
-              {activeCalendarIds.length > 0 ? (
-                <iframe
-                  src={combinedCalendarUrl}
-                  className="mt-5 w-full h-[420px] rounded-xl border border-blue-400/20 bg-[#050d1f]"
-                  title="Celkový kalendář akcí"
-                  loading="lazy"
-                />
+              {primaryCalendarUrl ? (
+                <a
+                  href={primaryCalendarUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
+                >
+                  <CalendarDays className="w-4 h-4" />
+                  Otevřít veřejný kalendář akcí
+                </a>
               ) : (
                 <div className="mt-5 rounded-xl border border-dashed border-blue-400/30 p-5 text-slate-300 bg-blue-950/20">
                   Jakmile doplníš první Google kalendář, zobrazí se tu
