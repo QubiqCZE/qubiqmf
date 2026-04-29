@@ -38,3 +38,68 @@ html, body {
               radial-gradient(ellipse at 80% 100%, #071230 0%, transparent 60%);
   min-height: 100vh;
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes softGlow {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(96, 165, 250, 0);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(96, 165, 250, 0.45);
+  }
+}
+
+@keyframes tagPop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 600ms ease both;
+}
+
+.animate-float-soft {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.animate-soft-glow {
+  animation: softGlow 2.8s ease-in-out infinite;
+}
+
+.animate-tag-pop {
+  animation: tagPop 460ms ease both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}

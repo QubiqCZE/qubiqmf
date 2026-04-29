@@ -10,22 +10,29 @@ function HomePage() {
     <>
       <div className="qubiq-bg px-4 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in-up">
             <p className="text-xs font-semibold tracking-[0.3em] text-blue-400 uppercase mb-3">
               qubiq.cz
             </p>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white">
-              QUBIQ{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Rozcestník
-              </span>
+              Jakub Krejci
             </h1>
-            <p className="mt-5 text-slate-400 text-lg max-w-md mx-auto">
-              Osobní projekty na jednom místě
+            <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              Osobní webová prezentace
+            </p>
+            <p className="mt-4 text-slate-400 text-lg max-w-2xl mx-auto">
+              Tvorba, vývoj, modelařina a audiovizuální projekty na jednom
+              místě.
+            </p>
+            <p className="mt-2 text-slate-500 text-sm max-w-xl mx-auto">
+              Projekty, na kterých pracuji, průběžná dokumentace a kontakt.
+            </p>
+            <p className="mt-4 text-sm font-medium text-blue-300 animate-soft-glow inline-block">
+              Vítej na mém portfoliu
             </p>
           </div>
 
-          <section className="mb-16">
+          <section className="mb-16 animate-fade-in-up delay-100">
             <h2 className="text-xl font-semibold text-white mb-5 text-center">
               Projekty
             </h2>
@@ -34,7 +41,7 @@ function HomePage() {
                 to="/zz/"
                 className="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-7 cursor-pointer no-underline group"
               >
-                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg">
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg animate-float-soft">
                   <Train className="w-10 h-10 text-white" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -56,7 +63,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="mb-8">
+          <section className="mb-8 animate-fade-in-up delay-200">
             <h2 className="text-xl font-semibold text-white mb-5 text-center">
               Bio
             </h2>
@@ -69,23 +76,23 @@ function HomePage() {
                 kutilství.
               </p>
               <div className="mt-5 flex flex-wrap justify-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-medium">
+                <span className="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-medium animate-tag-pop">
                   maker
                 </span>
-                <span className="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-medium">
+                <span className="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-medium animate-tag-pop delay-100">
                   modelář
                 </span>
-                <span className="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-medium">
+                <span className="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-medium animate-tag-pop delay-200">
                   vývojář
                 </span>
-                <span className="px-3 py-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-medium">
+                <span className="px-3 py-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-medium animate-tag-pop delay-300">
                   audiovizuální tvorba
                 </span>
               </div>
             </div>
           </section>
 
-          <section>
+          <section className="animate-fade-in-up delay-300">
             <h2 className="text-xl font-semibold text-white mb-5 text-center">
               Kontakt
             </h2>
