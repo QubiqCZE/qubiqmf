@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.netlify/
+.tanstack/
+.DS_Store
+*.log
