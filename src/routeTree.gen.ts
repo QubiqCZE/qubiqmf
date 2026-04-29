@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ZzIndexRouteImport } from './routes/zz/index'
+import { Route as MeshcoreIndexRouteImport } from './routes/meshcore/index'
+import { Route as EventsIndexRouteImport } from './routes/events/index'
+import { Route as CzlanIndexRouteImport } from './routes/czlan/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +26,21 @@ const ZzIndexRoute = ZzIndexRouteImport.update({
   path: '/zz/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeshcoreIndexRoute = MeshcoreIndexRouteImport.update({
+  id: '/meshcore/',
+  path: '/meshcore/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CzlanIndexRoute = CzlanIndexRouteImport.update({
+  id: '/czlan/',
+  path: '/czlan/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
   path: '/products/$productId',
@@ -32,30 +50,55 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/czlan/': typeof CzlanIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/meshcore/': typeof MeshcoreIndexRoute
   '/zz/': typeof ZzIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/czlan': typeof CzlanIndexRoute
+  '/events': typeof EventsIndexRoute
+  '/meshcore': typeof MeshcoreIndexRoute
   '/zz': typeof ZzIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/czlan/': typeof CzlanIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/meshcore/': typeof MeshcoreIndexRoute
   '/zz/': typeof ZzIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/products/$productId' | '/zz/'
+  fullPaths:
+    | '/'
+    | '/products/$productId'
+    | '/czlan/'
+    | '/events/'
+    | '/meshcore/'
+    | '/zz/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products/$productId' | '/zz'
-  id: '__root__' | '/' | '/products/$productId' | '/zz/'
+  to: '/' | '/products/$productId' | '/czlan' | '/events' | '/meshcore' | '/zz'
+  id:
+    | '__root__'
+    | '/'
+    | '/products/$productId'
+    | '/czlan/'
+    | '/events/'
+    | '/meshcore/'
+    | '/zz/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
+  CzlanIndexRoute: typeof CzlanIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
+  MeshcoreIndexRoute: typeof MeshcoreIndexRoute
   ZzIndexRoute: typeof ZzIndexRoute
 }
 
@@ -75,6 +118,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ZzIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meshcore/': {
+      id: '/meshcore/'
+      path: '/meshcore'
+      fullPath: '/meshcore/'
+      preLoaderRoute: typeof MeshcoreIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/czlan/': {
+      id: '/czlan/'
+      path: '/czlan'
+      fullPath: '/czlan/'
+      preLoaderRoute: typeof CzlanIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$productId': {
       id: '/products/$productId'
       path: '/products/$productId'
@@ -88,6 +152,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
+  CzlanIndexRoute: CzlanIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
+  MeshcoreIndexRoute: MeshcoreIndexRoute,
   ZzIndexRoute: ZzIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Train, Ruler, Route as RouteIcon, Activity, Image } from 'lucide-react'
+import { ArrowLeft, Train, Ruler, Route as RouteIcon, Activity, Image, CalendarDays } from 'lucide-react'
 
 export const Route = createFileRoute('/zz/')({
   component: ZahradniZeleznicePage,
@@ -111,6 +111,23 @@ function ZahradniZeleznicePage() {
                 <p className="text-slate-600 text-xs">Fotografie brzy</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <div className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-white mb-3">Akce projektu</h2>
+            <p className="text-slate-300 mb-4">
+              Přehled akcí, kde je možné projekt potkat, je dostupný v kalendáři
+              akcí.
+            </p>
+            <Link
+              to="/events/"
+              className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 no-underline"
+            >
+              <CalendarDays className="w-4 h-4" />
+              Otevřít kalendář akcí
+            </Link>
           </div>
         </section>
       </div>
