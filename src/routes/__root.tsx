@@ -5,6 +5,12 @@ import '../styles.css'
 
 export const Route = createRootRoute({
   head: () => ({
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://qubiq.cz/',
+      },
+    ],
     meta: [
       {
         charSet: 'utf-8',
@@ -14,7 +20,45 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'QUBIQ Projects',
+        title: 'Jakub Krejci | Osobni webova prezentace',
+      },
+      {
+        name: 'description',
+        content:
+          'Osobni web Jakuba Krejciho. Projekty CZLAN, MeshCore a Zahradni zeleznice, akce a kontakty.',
+      },
+      {
+        name: 'robots',
+        content: 'index, follow',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'Jakub Krejci | Osobni webova prezentace',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Projekty, akce a kontakt: CZLAN, MeshCore a Zahradni zeleznice.',
+      },
+      {
+        property: 'og:url',
+        content: 'https://qubiq.cz/',
+      },
+    ],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Jakub Krejci',
+          url: 'https://qubiq.cz/',
+          sameAs: ['https://instagram.com/jakub_krejci12'],
+        }),
       },
     ],
   }),

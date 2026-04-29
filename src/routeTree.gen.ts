@@ -14,7 +14,6 @@ import { Route as ZzIndexRouteImport } from './routes/zz/index'
 import { Route as MeshcoreIndexRouteImport } from './routes/meshcore/index'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
 import { Route as CzlanIndexRouteImport } from './routes/czlan/index'
-import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,15 +40,9 @@ const CzlanIndexRoute = CzlanIndexRouteImport.update({
   path: '/czlan/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
-  id: '/products/$productId',
-  path: '/products/$productId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/products/$productId': typeof ProductsProductIdRoute
   '/czlan/': typeof CzlanIndexRoute
   '/events/': typeof EventsIndexRoute
   '/meshcore/': typeof MeshcoreIndexRoute
@@ -57,7 +50,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/products/$productId': typeof ProductsProductIdRoute
   '/czlan': typeof CzlanIndexRoute
   '/events': typeof EventsIndexRoute
   '/meshcore': typeof MeshcoreIndexRoute
@@ -66,7 +58,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/products/$productId': typeof ProductsProductIdRoute
   '/czlan/': typeof CzlanIndexRoute
   '/events/': typeof EventsIndexRoute
   '/meshcore/': typeof MeshcoreIndexRoute
@@ -74,28 +65,14 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/products/$productId'
-    | '/czlan/'
-    | '/events/'
-    | '/meshcore/'
-    | '/zz/'
+  fullPaths: '/' | '/czlan/' | '/events/' | '/meshcore/' | '/zz/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products/$productId' | '/czlan' | '/events' | '/meshcore' | '/zz'
-  id:
-    | '__root__'
-    | '/'
-    | '/products/$productId'
-    | '/czlan/'
-    | '/events/'
-    | '/meshcore/'
-    | '/zz/'
+  to: '/' | '/czlan' | '/events' | '/meshcore' | '/zz'
+  id: '__root__' | '/' | '/czlan/' | '/events/' | '/meshcore/' | '/zz/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProductsProductIdRoute: typeof ProductsProductIdRoute
   CzlanIndexRoute: typeof CzlanIndexRoute
   EventsIndexRoute: typeof EventsIndexRoute
   MeshcoreIndexRoute: typeof MeshcoreIndexRoute
@@ -139,19 +116,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CzlanIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/$productId': {
-      id: '/products/$productId'
-      path: '/products/$productId'
-      fullPath: '/products/$productId'
-      preLoaderRoute: typeof ProductsProductIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProductsProductIdRoute: ProductsProductIdRoute,
   CzlanIndexRoute: CzlanIndexRoute,
   EventsIndexRoute: EventsIndexRoute,
   MeshcoreIndexRoute: MeshcoreIndexRoute,
