@@ -1,5 +1,6 @@
+import { useEffect, useMemo, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { CalendarDays, Instagram, Mail, Shapes, Train, Users } from 'lucide-react'
+import { CalendarDays, Globe, Instagram, Mail, Shapes, Train, Users } from 'lucide-react'
 import {
   PROJECT_CALENDARS,
   getGoogleCalendarPublicUrl,
@@ -12,74 +13,159 @@ export const Route = createFileRoute('/')({
 const PROJECTS = [
   {
     to: '/zz/' as const,
-    title: 'Zahradní Železnice',
-    label: 'Projekt #1',
-    description:
-      'Zahradní parní dráha v měřítku 1:22,5 (G). Dokumentace trati, fotogalerie a technické parametry.',
+    title: {
+      cs: 'Zahradní Železnice',
+      en: 'Garden Railway',
+    },
+    description: {
+      cs: 'Zahradní parní dráha v měřítku 1:22,5 (G). Dokumentace trati, fotogalerie a technické parametry.',
+      en: 'Garden steam railway in 1:22.5 (G scale). Track documentation, gallery and technical details.',
+    },
     icon: Train,
   },
   {
     to: '/czlan/' as const,
-    title: 'CZLAN',
-    label: 'Projekt #2',
-    description:
-      'Spolek zaměřený na vzdělávání, komunitu a kutilství. Organizace akcí a tvorba obsahu.',
+    title: {
+      cs: 'CZLAN',
+      en: 'CZLAN',
+    },
+    description: {
+      cs: 'Spolek zaměřený na vzdělávání, komunitu a kutilství. Organizace akcí a tvorba obsahu.',
+      en: 'Community organization focused on education and DIY culture. Events and content production.',
+    },
     icon: Users,
   },
   {
     to: '/meshcore/' as const,
-    title: 'MeshCore',
-    label: 'Projekt #3',
-    description:
-      'Technologický projekt zaměřený na síťovou infrastrukturu, experimenty a vývoj.',
+    title: {
+      cs: 'MeshCore',
+      en: 'MeshCore',
+    },
+    description: {
+      cs: 'Technologický projekt zaměřený na síťovou infrastrukturu, experimenty a vývoj.',
+      en: 'Technology project focused on networking infrastructure, experiments and development.',
+    },
     icon: Shapes,
   },
 ]
 
+type SiteLanguage = 'cs' | 'en'
+
+const I18N = {
+  cs: {
+    subtitle: 'Osobní webová prezentace',
+    sectionProjects: 'Projekty',
+    projectLabel: 'Projekt',
+    projectCta: 'Zobrazit projekt',
+    sectionEvents: 'Akce a kalendáře',
+    eventsText: 'Přehled akcí, kde je možné některý z projektů potkat.',
+    eventsOpen: 'Otevřít veřejný kalendář akcí',
+    eventsDetails: 'Detail kalendářů podle projektu',
+    sectionBio: 'Bio',
+    bio: 'Je mi 22 let. Jsem maker, modelář a vývojář, baví mě také audiovizuální tvorba. Moje koníčky jsou mou prací a zúročuji je mimo jiné i ve spolku CZLAN, kde se věnuji primárně správě sociálních sítí a realizaci akcí zaměřených na vzdělávání a kutilství.',
+    sectionContact: 'Kontakt',
+    contactText: 'Napiš mi, pokud chceš spolupráci nebo konzultaci.',
+    tags: ['maker', 'modelář', 'vývojář', 'audiovizuální tvorba'],
+  },
+  en: {
+    subtitle: 'Personal website portfolio',
+    sectionProjects: 'Projects',
+    projectLabel: 'Project',
+    projectCta: 'Open project',
+    sectionEvents: 'Events and calendar',
+    eventsText: 'Overview of events where you can meet one of my projects.',
+    eventsOpen: 'Open public events calendar',
+    eventsDetails: 'Project calendar details',
+    sectionBio: 'Bio',
+    bio: 'I am 22 years old. I am a maker, model builder and developer, and I also enjoy audiovisual production. My hobbies are my profession, and I apply them in the CZLAN association where I focus on social media management and events dedicated to education and DIY culture.',
+    sectionContact: 'Contact',
+    contactText: 'Feel free to reach out for collaboration or consultation.',
+    tags: ['maker', 'model builder', 'developer', 'audiovisual'],
+  },
+} as const
+
 function HomePage() {
+  const [language, setLanguage] = useState<SiteLanguage>('cs')
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem('site-language')
+    if (stored === 'cs' || stored === 'en') {
+      setLanguage(stored)
+      return
+    }
+    const browserLanguage = navigator.language.toLowerCase().startsWith('cs') ? 'cs' : 'en'
+    setLanguage(browserLanguage)
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('site-language', language)
+  }, [language])
+
+  const text = I18N[language]
   const primaryCalendar = PROJECT_CALENDARS.find((c) => (c.calendarId ?? '').trim().length > 0)
   const primaryCalendarUrl = primaryCalendar?.calendarId
     ? getGoogleCalendarPublicUrl(primaryCalendar.calendarId)
     : ''
+  const projectList = useMemo(() => PROJECTS, [])
 
   return (
     <>
       <div className="qubiq-bg px-4 py-16 md:py-24">
+        <div className="qubiq-orb qubiq-orb-a" />
+        <div className="qubiq-orb qubiq-orb-b" />
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-[0.3em] text-blue-400 uppercase mb-3">
+          <div className="flex justify-center md:justify-end mb-6">
+            <div className="glass-card rounded-xl px-3 py-2 inline-flex items-center gap-2">
+              <Globe className="w-4 h-4 text-sky-300" />
+              <button
+                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'cs' ? 'bg-blue-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
+                onClick={() => setLanguage('cs')}
+                type="button"
+              >
+                CZ
+              </button>
+              <button
+                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'en' ? 'bg-blue-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
+                onClick={() => setLanguage('en')}
+                type="button"
+              >
+                EN
+              </button>
+            </div>
+          </div>
+
+          <div className="text-center mb-16 animate-fade-in-up">
+            <p className="text-xs font-semibold tracking-[0.3em] text-sky-300 uppercase mb-3">
               qubiq.cz
             </p>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white">
+            <h1 className="text-5xl md:text-6xl font-black tracking-tight text-white">
               Jakub Krejčí
             </h1>
-            <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              Osobní webová prezentace
+            <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-fuchsia-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+              {text.subtitle}
             </p>
           </div>
 
           <section className="mb-16 animate-fade-in-up delay-100">
-            <h2 className="text-xl font-semibold text-white mb-5 text-center">
-              Projekty
-            </h2>
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">{text.sectionProjects}</h2>
             <div className="grid grid-cols-1 gap-5">
-              {PROJECTS.map(({ to, title, label, description, icon: Icon }) => (
+              {projectList.map(({ to, title, description, icon: Icon }, index) => (
                 <Link
                   key={to}
                   to={to}
-                  className="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-7 cursor-pointer no-underline group"
+                  className="glass-card cheerful-card rounded-2xl p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-7 cursor-pointer no-underline group"
                 >
                   <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg animate-float-soft">
                     <Icon className="w-10 h-10 text-white" strokeWidth={1.5} />
                   </div>
                   <div>
                     <p className="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-1">
-                      {label}
+                      {text.projectLabel} #{index + 1}
                     </p>
-                    <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-                    <p className="text-slate-400 leading-relaxed text-sm">{description}</p>
+                    <h2 className="text-2xl font-bold text-white mb-2">{title[language]}</h2>
+                    <p className="text-slate-300 leading-relaxed text-sm">{description[language]}</p>
                     <span className="mt-4 inline-flex items-center gap-1.5 text-blue-400 text-sm font-medium group-hover:gap-2.5 transition-all">
-                      Zobrazit projekt →
+                      {text.projectCta} →
                     </span>
                   </div>
                 </Link>
@@ -88,12 +174,10 @@ function HomePage() {
           </section>
 
           <section className="mb-8 animate-fade-in-up delay-200">
-            <h2 className="text-xl font-semibold text-white mb-5 text-center">
-              Akce a kalendáře
-            </h2>
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">{text.sectionEvents}</h2>
             <div className="glass-card rounded-2xl p-6 md:p-8 text-center">
               <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Celkový přehled akcí, kde je možné některý z projektů potkat.
+                {text.eventsText}
               </p>
               {primaryCalendarUrl ? (
                 <a
@@ -103,7 +187,7 @@ function HomePage() {
                   className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
                 >
                   <CalendarDays className="w-4 h-4" />
-                  Otevřít veřejný kalendář akcí
+                  {text.eventsOpen}
                 </a>
               ) : (
                 <div className="mt-5 rounded-xl border border-dashed border-blue-400/30 p-5 text-slate-300 bg-blue-950/20">
@@ -116,48 +200,32 @@ function HomePage() {
                 className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
               >
                 <CalendarDays className="w-4 h-4" />
-                Detail kalendářů podle projektu
+                {text.eventsDetails}
               </Link>
             </div>
           </section>
 
           <section className="mb-8 animate-fade-in-up delay-300">
-            <h2 className="text-xl font-semibold text-white mb-5 text-center">
-              Bio
-            </h2>
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">{text.sectionBio}</h2>
             <div className="glass-card rounded-2xl p-6 md:p-8 text-center">
-              <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">
-                Je mi 22 let. Jsem maker, modelář a vývojář, baví mě také
-                audiovizuální tvorba. Moje koníčky jsou mou prací a zúročuji je
-                mimo jiné i ve spolku CZLAN, kde se věnuji primárně správě
-                sociálních sítí a realizaci akcí zaměřených na vzdělávání a
-                kutilství.
-              </p>
+              <p className="text-slate-300 leading-relaxed max-w-3xl mx-auto">{text.bio}</p>
               <div className="mt-5 flex flex-wrap justify-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-medium animate-tag-pop">
-                  maker
-                </span>
-                <span className="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-medium animate-tag-pop delay-100">
-                  modelář
-                </span>
-                <span className="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-medium animate-tag-pop delay-200">
-                  vývojář
-                </span>
-                <span className="px-3 py-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-medium animate-tag-pop delay-300">
-                  audiovizuální tvorba
-                </span>
+                {text.tags.map((tag, index) => (
+                  <span
+                    key={tag}
+                    className={`px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-200 text-xs font-medium animate-tag-pop ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : ''}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </section>
 
           <section className="animate-fade-in-up delay-300">
-            <h2 className="text-xl font-semibold text-white mb-5 text-center">
-              Kontakt
-            </h2>
+            <h2 className="text-xl font-semibold text-white mb-5 text-center">{text.sectionContact}</h2>
             <div className="glass-card rounded-2xl p-6 md:p-8 space-y-4 text-center">
-              <p className="text-slate-300 max-w-2xl mx-auto">
-                Napiš mi, pokud chceš spolupráci nebo konzultaci.
-              </p>
+              <p className="text-slate-300 max-w-2xl mx-auto">{text.contactText}</p>
               <div className="space-y-3 text-slate-200 inline-block text-left">
                 <p className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-blue-400" />
