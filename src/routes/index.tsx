@@ -116,16 +116,16 @@ function HomePage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex justify-center md:justify-end mb-6">
             <div className="glass-card rounded-xl px-3 py-2 inline-flex items-center gap-2">
-              <Globe className="w-4 h-4 text-sky-300" />
+              <Globe className="w-4 h-4 text-orange-300" />
               <button
-                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'cs' ? 'bg-blue-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
+                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'cs' ? 'bg-orange-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
                 onClick={() => setLanguage('cs')}
                 type="button"
               >
                 CZ
               </button>
               <button
-                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'en' ? 'bg-blue-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
+                className={`text-xs px-2 py-1 rounded-md transition-colors ${language === 'en' ? 'bg-orange-500/30 text-white' : 'text-slate-300 hover:text-white'}`}
                 onClick={() => setLanguage('en')}
                 type="button"
               >
@@ -135,13 +135,13 @@ function HomePage() {
           </div>
 
           <div className="text-center mb-16 animate-fade-in-up">
-            <p className="text-xs font-semibold tracking-[0.3em] text-sky-300 uppercase mb-3">
+            <p className="text-xs font-semibold tracking-[0.3em] text-orange-300 uppercase mb-3">
               qubiq.cz
             </p>
             <h1 className="text-5xl md:text-6xl font-black tracking-tight text-white">
               Jakub Krejčí
             </h1>
-            <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-fuchsia-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+            <p className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-amber-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent">
               {text.subtitle}
             </p>
           </div>
@@ -149,7 +149,7 @@ function HomePage() {
           <section className="mb-16 animate-fade-in-up delay-100">
             <h2 className="text-xl font-semibold text-white mb-5 text-center">{text.sectionProjects}</h2>
             <div className="grid grid-cols-1 gap-5">
-              {projectList.map(({ to, title, description, icon: Icon }, index) => (
+              {projectList.map(({ to, title, description, icon: Icon }) => (
                 <Link
                   key={to}
                   to={to}
@@ -159,12 +159,9 @@ function HomePage() {
                     <Icon className="w-10 h-10 text-white" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold tracking-widest text-blue-400 uppercase mb-1">
-                      {text.projectLabel} #{index + 1}
-                    </p>
                     <h2 className="text-2xl font-bold text-white mb-2">{title[language]}</h2>
                     <p className="text-slate-300 leading-relaxed text-sm">{description[language]}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-blue-400 text-sm font-medium group-hover:gap-2.5 transition-all">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-orange-300 text-sm font-medium group-hover:gap-2.5 transition-all">
                       {text.projectCta} →
                     </span>
                   </div>
@@ -184,20 +181,20 @@ function HomePage() {
                   href={primaryCalendarUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
+                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500/20 border border-orange-400/40 text-orange-200 hover:bg-orange-500/30 transition-colors no-underline"
                 >
                   <CalendarDays className="w-4 h-4" />
                   {text.eventsOpen}
                 </a>
               ) : (
-                <div className="mt-5 rounded-xl border border-dashed border-blue-400/30 p-5 text-slate-300 bg-blue-950/20">
+                <div className="mt-5 rounded-xl border border-dashed border-orange-400/30 p-5 text-slate-300 bg-orange-950/20">
                   Jakmile doplníš první Google kalendář, zobrazí se tu
                   automaticky celkový přehled akcí.
                 </div>
               )}
               <Link
                 to="/events/"
-                className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 hover:bg-blue-500/30 transition-colors no-underline"
+                className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500/20 border border-orange-400/40 text-orange-200 hover:bg-orange-500/30 transition-colors no-underline"
               >
                 <CalendarDays className="w-4 h-4" />
                 {text.eventsDetails}
@@ -213,7 +210,7 @@ function HomePage() {
                 {text.tags.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-200 text-xs font-medium animate-tag-pop ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : ''}`}
+                    className={`px-3 py-1 rounded-full bg-orange-500/15 border border-orange-400/30 text-orange-200 text-xs font-medium animate-tag-pop ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : ''}`}
                   >
                     {tag}
                   </span>
@@ -228,21 +225,21 @@ function HomePage() {
               <p className="text-slate-300 max-w-2xl mx-auto">{text.contactText}</p>
               <div className="space-y-3 text-slate-200 inline-block text-left">
                 <p className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-blue-400" />
+                  <Mail className="w-4 h-4 text-orange-300" />
                   <a
                     href="mailto:me@qubiq.cz"
-                    className="hover:text-blue-300 transition-colors"
+                    className="hover:text-orange-200 transition-colors"
                   >
                     me@qubiq.cz
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Instagram className="w-4 h-4 text-blue-400" />
+                  <Instagram className="w-4 h-4 text-orange-300" />
                   <a
                     href="https://instagram.com/jakub_krejci12"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-blue-300 transition-colors"
+                    className="hover:text-orange-200 transition-colors"
                   >
                     @jakub_krejci12
                   </a>
